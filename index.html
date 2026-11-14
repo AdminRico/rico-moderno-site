@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/jpeg" href="/images/logo.jpg" />
-    <script type="module" crossorigin src="/assets/index-Final12.js"></script>
+    <script type="module" crossorigin src="/assets/index-Final13.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-cKmI2ls6.css">
     <style>
       /* Slow, calm drift of the starry hero backgrounds */
@@ -291,9 +291,25 @@
       /* Coaching FAQ: accordion, one answer open at a time */
       .rm-faq, .rm-faq-col { display: flex; flex-direction: column; gap: 0.85rem; }
       @media (min-width: 900px) {
-        .rm-faq { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0.85rem 1.25rem; align-items: start;
-          width: min(1100px, calc(100vw - 4rem)); margin-left: calc(50% - min(550px, calc(50vw - 2rem))); }
+        .rm-faq { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0.85rem 1.25rem; align-items: start; }
+        .rm-faq-panel { width: min(1100px, calc(100vw - 4rem)); margin-left: calc(50% - min(550px, calc(50vw - 2rem))); }
       }
+      /* The whole FAQ folds away under one heading */
+      .rm-faq-title { margin: 0; text-align: center; }
+      .rm-faq-toggle { display: inline-flex; align-items: center; gap: 0.9rem; padding: 0.6rem 1rem; background: none; border: 0; cursor: pointer;
+        font-family: 'Cinzel', serif; font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; color: #e2e8f0; }
+      .rm-faq-toggle:focus-visible { outline: 2px solid rgba(34,211,238,0.6); outline-offset: 4px; border-radius: 4px; }
+      .rm-faq-toggle .rm-faq-icon { flex-basis: 16px; width: 16px; height: 16px; }
+      .rm-faq-toggle .rm-faq-icon::before, .rm-faq-toggle .rm-faq-icon::after { width: 16px; top: 7px; }
+      .rm-faq-wrap.open > .rm-faq-title .rm-faq-icon::after { transform: rotate(0deg); }
+      .rm-faq-panel { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows 0.5s ease, visibility 0s linear 0.5s; }
+      .rm-faq-wrap.open > .rm-faq-panel { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows 0.5s ease, visibility 0s linear 0s; }
+      .rm-faq-panel-inner { overflow: hidden; padding: 0 4px; margin: 0 -4px; }
+      .rm-faq-panel-inner > .rm-faq { padding: 2rem 0 4px; }
+      /* Readability: brighter, slightly larger quotes */
+      .cosmic-quote { color: rgba(226,232,240,0.88) !important; font-size: 1.5rem !important; }
+      /* Readability: deeper button gradient so the white button text has enough contrast */
+      .btn-cosmic { background: linear-gradient(135deg, #0e7490, #6d28d9) !important; }
       /* After Work: three life-area cards with equal height */
       .aw-areas { grid-auto-rows: 1fr; }
       .aw-area { display: flex; flex-direction: column; }
@@ -310,8 +326,8 @@
       .rm-faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s ease; }
       .rm-faq-item.open .rm-faq-a { grid-template-rows: 1fr; }
       .rm-faq-inner { overflow: hidden; }
-      .rm-faq-inner p { margin: 0; padding: 0 1.4rem 1.25rem; font-family: 'Raleway', sans-serif; font-size: 0.9rem; color: rgba(148,163,184,0.85); line-height: 1.7; }
-      @media (prefers-reduced-motion: reduce) { .rm-faq-a, .rm-faq-icon::before, .rm-faq-icon::after, .rm-faq-item { transition: none !important; } }
+      .rm-faq-inner p { margin: 0; padding: 0 1.4rem 1.25rem; font-family: 'Raleway', sans-serif; font-size: 0.97rem; color: rgba(226,232,240,0.88); line-height: 1.75; }
+      @media (prefers-reduced-motion: reduce) { .rm-faq-a, .rm-faq-icon::before, .rm-faq-icon::after, .rm-faq-item, .rm-faq-panel { transition: none !important; } }
       /* Coaching: metallic antique gold for the Mastery title */
       .gold-metal {
         background: linear-gradient(90deg, #A67C3D 0%, #E6C98A 50%, #A67C3D 100%);
