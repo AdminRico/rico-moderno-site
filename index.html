@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/jpeg" href="/images/logo.jpg" />
-    <script type="module" crossorigin src="/assets/index-Nebula8.js"></script>
+    <script type="module" crossorigin src="/assets/index-OneSky9.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-cKmI2ls6.css">
     <style>
       /* Slow, calm drift of the starry hero backgrounds */
@@ -258,6 +258,18 @@
       @keyframes btn-pulse {
         0%, 100% { box-shadow: 0 0 18px rgba(34,211,238,0.28); }
         50%      { box-shadow: 0 0 32px rgba(34,211,238,0.5), 0 0 60px rgba(139,92,246,0.22); }
+      }
+      /* One continuous night sky: the top banners fade softly into the page background */
+      .hero-bg {
+        position: absolute; inset: 0;
+        -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 180px), rgba(0,0,0,0.35) calc(100% - 70px), transparent 100%);
+        mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 180px), rgba(0,0,0,0.35) calc(100% - 70px), transparent 100%);
+      }
+      @media (max-width: 768px) {
+        .hero-bg {
+          -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 120px), rgba(0,0,0,0.35) calc(100% - 45px), transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 120px), rgba(0,0,0,0.35) calc(100% - 45px), transparent 100%);
+        }
       }
       /* All pages: nebula glows and twinkling stars behind the sections */
       .nebula-layer { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
