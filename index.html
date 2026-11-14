@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/jpeg" href="/images/logo.jpg" />
-    <script type="module" crossorigin src="/assets/index-Text7.js"></script>
+    <script type="module" crossorigin src="/assets/index-Nebula8.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-cKmI2ls6.css">
     <style>
       /* Slow, calm drift of the starry hero backgrounds */
@@ -258,6 +258,57 @@
       @keyframes btn-pulse {
         0%, 100% { box-shadow: 0 0 18px rgba(34,211,238,0.28); }
         50%      { box-shadow: 0 0 32px rgba(34,211,238,0.5), 0 0 60px rgba(139,92,246,0.22); }
+      }
+      /* All pages: nebula glows and twinkling stars behind the sections */
+      .nebula-layer { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+      .nebula-blob {
+        position: absolute; width: var(--w); max-width: 1000px; aspect-ratio: 1; border-radius: 50%;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, rgba(var(--c), 0.30) 0%, rgba(var(--c), 0.13) 34%, rgba(var(--c), 0) 68%);
+        opacity: 0.85;
+      }
+      .nebula-band {
+        position: absolute; left: -20%; width: 140%; height: 340px; margin-top: -170px; border-radius: 50%;
+        background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(167,139,250,0.16) 0%, rgba(96,165,250,0.08) 45%, rgba(96,165,250,0) 72%);
+        opacity: 0.85;
+      }
+      @media (max-width: 768px) {
+        .nebula-blob { width: calc(var(--w) * 1.7); }
+        .nebula-band { height: 260px; margin-top: -130px; }
+      }
+      .twinkle {
+        position: absolute; width: 2px; height: 2px; border-radius: 50%;
+        background: #fff; box-shadow: 0 0 5px rgba(186,230,253,0.85); opacity: 0.45;
+      }
+      .twinkle-big { width: 3px; height: 3px; box-shadow: 0 0 8px rgba(196,181,253,0.9); }
+      /* Homepage "Ready to Begin": rising golden specks in the side margins */
+      .rise-specks { position: absolute; inset: 0; z-index: 0; pointer-events: none; display: none; }
+      .speck {
+        position: absolute; bottom: 8%; width: var(--s); height: var(--s); border-radius: 50%;
+        background: #f0cf86; box-shadow: 0 0 8px rgba(240,207,134,0.85), 0 0 16px rgba(217,168,78,0.45); opacity: 0;
+      }
+      @media (max-width: 768px) { .speck-wide { display: none; } }
+      @media (prefers-reduced-motion: no-preference) {
+        .nebula-blob { animation: nebula-breathe var(--d) ease-in-out var(--dl) infinite alternate; }
+        .nebula-band { animation: nebula-band var(--d) ease-in-out var(--dl) infinite alternate; }
+        .twinkle { animation: twinkle var(--d) ease-in-out var(--dl) infinite; }
+        .rise-specks { display: block; }
+        .speck { animation: speck-rise var(--d) linear var(--dl) infinite; }
+      }
+      @keyframes nebula-breathe {
+        from { opacity: 0.55; transform: translate(-50%, -50%) scale(0.9); }
+        to   { opacity: 1;    transform: translate(-50%, -50%) scale(1.1); }
+      }
+      @keyframes nebula-band { from { opacity: 0.5; } to { opacity: 1; } }
+      @keyframes twinkle {
+        0%, 100% { opacity: 0.2;  transform: scale(0.8); }
+        50%      { opacity: 0.95; transform: scale(1.35); }
+      }
+      @keyframes speck-rise {
+        0%   { opacity: 0;   transform: translateY(0); }
+        15%  { opacity: 0.85; }
+        80%  { opacity: 0.6; }
+        100% { opacity: 0;   transform: translateY(-280px); }
       }
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after {
