@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/jpeg" href="/images/logo.jpg" />
-    <script type="module" crossorigin src="/assets/index-OneSky9.js"></script>
+    <script type="module" crossorigin src="/assets/index-Final10.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-cKmI2ls6.css">
     <style>
       /* Slow, calm drift of the starry hero backgrounds */
@@ -227,8 +227,8 @@
       }
       /* Coaching: champagne-gold Mastery card */
       .pkg-gold {
-        border-color: rgba(217,168,78,0.6) !important;
-        box-shadow: 0 0 26px rgba(217,168,78,0.12) !important;
+        border-color: rgba(197,160,89,0.6) !important;
+        box-shadow: 0 0 26px rgba(197,160,89,0.12) !important;
       }
       /* Shooting stars in the page heroes (placed by the small script below, never over text) */
       .sky-stars { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 40; }
@@ -270,6 +270,16 @@
           -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 120px), rgba(0,0,0,0.35) calc(100% - 45px), transparent 100%);
           mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 120px), rgba(0,0,0,0.35) calc(100% - 45px), transparent 100%);
         }
+      }
+      /* Soft teal icons with a gentle glow (Inner Work topics, After Work practices) */
+      .glow-icons svg { filter: drop-shadow(0 0 6px rgba(34,211,238,0.55)); }
+      /* Coaching: metallic antique gold for the Mastery title */
+      .gold-metal {
+        background: linear-gradient(90deg, #A67C3D 0%, #E6C98A 50%, #A67C3D 100%);
+        -webkit-background-clip: text; background-clip: text;
+        -webkit-text-fill-color: transparent; color: transparent !important;
+        text-shadow: none !important;
+        filter: drop-shadow(0 0 10px rgba(197,160,89,0.35));
       }
       /* All pages: nebula glows and twinkling stars behind the sections */
       .nebula-layer { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
