@@ -15,7 +15,7 @@
       /* Slow, calm drift of the starry hero backgrounds */
       @media (prefers-reduced-motion: no-preference) {
         .cosmic-drift {
-          animation: cosmic-drift 80s ease-in-out infinite alternate;
+          animation: cosmic-drift 45s ease-in-out infinite alternate;
           will-change: transform;
           backface-visibility: hidden;
         }
@@ -24,8 +24,20 @@
         }
       }
       @keyframes cosmic-drift {
-        from { transform: scale(1.08) translate3d(-1.5%, -1%, 0); }
-        to   { transform: scale(1.08) translate3d(1.5%, 1%, 0); }
+        0%   { transform: scale(1.15) translate3d(-4%, -2.5%, 0); }
+        50%  { transform: scale(1.18) translate3d(0.5%, 1.5%, 0); }
+        100% { transform: scale(1.15) translate3d(4%, 2.5%, 0); }
+      }
+      /* Phones: narrower screens need a little more drift to be visible */
+      @keyframes cosmic-drift-phone {
+        0%   { transform: scale(1.2) translate3d(-7%, -3.5%, 0); }
+        50%  { transform: scale(1.23) translate3d(1%, 2%, 0); }
+        100% { transform: scale(1.2) translate3d(7%, 3.5%, 0); }
+      }
+      @media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+        .cosmic-drift {
+          animation-name: cosmic-drift-phone;
+        }
       }
     </style>
   </head>
