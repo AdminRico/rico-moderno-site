@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/jpeg" href="/images/logo.jpg" />
-    <script type="module" crossorigin src="/assets/index-Final11.js"></script>
+    <script type="module" crossorigin src="/assets/index-Final12.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-cKmI2ls6.css">
     <style>
       /* Slow, calm drift of the starry hero backgrounds */
@@ -289,7 +289,15 @@
       .iw-topic-icon svg { display: block; }
       @media (max-width: 768px) { .iw-topics { grid-template-columns: 1fr; } }
       /* Coaching FAQ: accordion, one answer open at a time */
-      .rm-faq { display: flex; flex-direction: column; gap: 0.85rem; }
+      .rm-faq, .rm-faq-col { display: flex; flex-direction: column; gap: 0.85rem; }
+      @media (min-width: 900px) {
+        .rm-faq { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0.85rem 1.25rem; align-items: start;
+          width: min(1100px, calc(100vw - 4rem)); margin-left: calc(50% - min(550px, calc(50vw - 2rem))); }
+      }
+      /* After Work: three life-area cards with equal height */
+      .aw-areas { grid-auto-rows: 1fr; }
+      .aw-area { display: flex; flex-direction: column; }
+      .aw-area > p:last-child { margin-top: auto; }
       .rm-faq-item { background: rgba(10,10,30,0.6); border: 1px solid rgba(34,211,238,0.12); border-radius: 4px; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
       .rm-faq-item.open { border-color: rgba(34,211,238,0.32); box-shadow: 0 0 22px rgba(34,211,238,0.08); }
       .rm-faq-h { margin: 0; font: inherit; }
