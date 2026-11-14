@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/jpeg" href="/images/logo.jpg" />
-    <script type="module" crossorigin src="/assets/index-PageFx2.js"></script>
+    <script type="module" crossorigin src="/assets/index-Fx3calm.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-cKmI2ls6.css">
     <style>
       /* Slow, calm drift of the starry hero backgrounds */
@@ -95,63 +95,19 @@
         from { background-position: 0% 50%; }
         to   { background-position: -200% 50%; }
       }
-      /* About: "The Journey That Led Here" meditation figure */
-      .journey-figure { width: 100%; height: 100%; display: block; }
-      .journey-figure .jf-walker { display: none; }
-      .journey-figure .jf-glow { opacity: 0.6; }
-      @media (max-width: 768px) {
-        .journey-box { max-width: 220px; margin: 0 auto; }
-      }
-      @media (prefers-reduced-motion: no-preference) {
-        .journey-figure .jf-walker { display: inline; transform: translateX(-240px); }
-        .journey-figure .jf-sitter, .journey-figure .jf-glow { opacity: 0; }
-        .journey-figure .jf-leg, .journey-figure .jf-arm { transform-box: view-box; transform-origin: 0 0; }
-        .visible .journey-figure .jf-walker {
-          animation: jf-walk-in 5s cubic-bezier(0.25, 0.1, 0.35, 1) 0.6s forwards,
-                     jf-fade-out 0.9s ease 5.5s forwards;
-        }
-        .visible .journey-figure .jf-leg-a { animation: jf-swing 1.1s ease-in-out 0.6s 5 alternate; }
-        .visible .journey-figure .jf-leg-b { animation: jf-swing-rev 1.1s ease-in-out 0.6s 5 alternate; }
-        .visible .journey-figure .jf-arm-a { animation: jf-swing-rev 1.1s ease-in-out 0.6s 5 alternate; }
-        .visible .journey-figure .jf-arm-b { animation: jf-swing 1.1s ease-in-out 0.6s 5 alternate; }
-        .visible .journey-figure .jf-bob { animation: jf-bob 0.55s ease-in-out 0.6s 10 alternate; }
-        .visible .journey-figure .jf-sitter {
-          animation: jf-settle 1.4s ease-out 5.6s forwards;
-        }
-        .visible .journey-figure .jf-breath {
-          transform-box: fill-box; transform-origin: 50% 100%;
-          animation: jf-breathe 7s ease-in-out 7s infinite;
-        }
-        .visible .journey-figure .jf-glow {
-          transform-box: fill-box; transform-origin: 50% 50%;
-          animation: jf-glow-in 1.6s ease-out 6s forwards, jf-glow-breathe 7s ease-in-out 7.6s infinite;
-        }
-      }
-      @keyframes jf-walk-in { from { transform: translateX(-240px); } to { transform: translateX(0); } }
-      @keyframes jf-fade-out { to { opacity: 0; } }
-      @keyframes jf-swing { from { transform: rotate(-17deg); } to { transform: rotate(17deg); } }
-      @keyframes jf-swing-rev { from { transform: rotate(17deg); } to { transform: rotate(-17deg); } }
-      @keyframes jf-bob { from { transform: translateY(0); } to { transform: translateY(-3px); } }
-      @keyframes jf-settle { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-      @keyframes jf-breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.015, 1.03); } }
-      @keyframes jf-glow-in { from { opacity: 0; transform: scale(0.85); } to { opacity: 0.6; transform: scale(0.95); } }
-      @keyframes jf-glow-breathe {
-        0%, 100% { opacity: 0.6; transform: scale(0.95); }
-        50% { opacity: 1; transform: scale(1.1); }
-      }
       /* Inner Work: breathing glow behind the heading */
       .breath-heading { position: relative; isolation: isolate; }
       .breath-heading::before {
         content: "";
         position: absolute;
-        left: -12%;
+        left: -22%;
         top: 50%;
-        width: 75%;
+        width: 105%;
         aspect-ratio: 1.6;
         transform: translateY(-50%) scale(1);
-        background: radial-gradient(ellipse at center, rgba(34,211,238,0.28) 0%, rgba(167,139,250,0.16) 40%, rgba(167,139,250,0) 70%);
-        filter: blur(6px);
-        opacity: 0.7;
+        background: radial-gradient(ellipse at center, rgba(34,211,238,0.5) 0%, rgba(167,139,250,0.3) 38%, rgba(167,139,250,0) 70%);
+        filter: blur(8px);
+        opacity: 0.85;
         z-index: -1;
         pointer-events: none;
       }
@@ -198,12 +154,100 @@
         .fade-up { transform: none !important; }
       }
       @keyframes breath-glow {
-        0%, 100% { opacity: 0.45; transform: translateY(-50%) scale(0.85); }
-        50%      { opacity: 1;    transform: translateY(-50%) scale(1.12); }
+        0%, 100% { opacity: 0.55; transform: translateY(-50%) scale(0.88); }
+        50%      { opacity: 1;    transform: translateY(-50%) scale(1.2); }
       }
       @keyframes pkg-glow { from { opacity: 0.35; } to { opacity: 1; } }
       @keyframes draw { to { stroke-dashoffset: 0; } }
       @keyframes check-pop { 0% { transform: scale(1); } 40% { transform: scale(1.08); } 100% { transform: scale(1); } }
+      /* About: lotus meditation figure, floating freely with a breathing glow */
+      .lotus-figure { width: 100%; height: 100%; display: block; overflow: visible; }
+      .journey-box { aspect-ratio: 300 / 290 !important; }
+      .lotus-figure .lotus-glow { opacity: 0.75; }
+      @media (max-width: 768px) {
+        .journey-box { max-width: 220px; margin: 0 auto; }
+      }
+      /* After Work: dawn layers */
+      .aw-dawn-glow {
+        position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; opacity: 0.55;
+        background: radial-gradient(ellipse 45% 55% at 70% 52%, rgba(249,115,22,0.38) 0%, rgba(249,115,22,0) 70%),
+                    radial-gradient(ellipse 45% 55% at 38% 38%, rgba(167,139,250,0.32) 0%, rgba(167,139,250,0) 70%);
+      }
+      .aw-dawn-veil { position: absolute; inset: 0; pointer-events: none; background: #05050f; opacity: 0; }
+      /* After Work: four life-area cards */
+      .life-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2.5rem; }
+      @media (max-width: 640px) { .life-cards { grid-template-columns: repeat(2, 1fr); } }
+      .life-card {
+        display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+        padding: 1.4rem 0.75rem; border-radius: 4px; text-align: center;
+        background: rgba(10,10,30,0.55); border: 1px solid rgba(167,139,250,0.18);
+        box-shadow: 0 0 22px color-mix(in srgb, var(--c) 18%, transparent);
+      }
+      .life-icon svg { width: 30px; height: 30px; fill: none; stroke: var(--c); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; display: block; filter: drop-shadow(0 0 6px var(--c)); }
+      .life-label { font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.08em; color: #e2e8f0; }
+      /* All pages: soft light sweep across the main heading */
+      .sweep-heading { position: relative; }
+      /* Homepage hero: fill the screen without distortion */
+      .hero-logo { background-size: cover !important; }
+      .hero-logo-fill { display: none; }
+      @media (max-aspect-ratio: 1/1) {
+        .hero-logo {
+          background-size: contain !important;
+          -webkit-mask-image: linear-gradient(to bottom, transparent calc(50% - 28vw), #000 calc(50% - 18vw), #000 calc(50% + 18vw), transparent calc(50% + 28vw));
+          mask-image: linear-gradient(to bottom, transparent calc(50% - 28vw), #000 calc(50% - 18vw), #000 calc(50% + 18vw), transparent calc(50% + 28vw));
+        }
+        .hero-logo-fill {
+          display: block; position: absolute; inset: -40px; z-index: 1; opacity: 0.6;
+          background-size: cover; background-position: center;
+          filter: blur(22px) brightness(0.6) saturate(1.1);
+        }
+      }
+      .rm-glints { overflow: hidden; }
+      @media (min-aspect-ratio: 1/1) {
+        .rm-glints-box { width: max(100cqw, calc(100cqh * 1100 / 614)) !important; }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .lotus-figure .lotus-glow { transform-box: fill-box; transform-origin: 50% 50%; animation: lotus-breathe 7s ease-in-out infinite; }
+        .lotus-figure .lotus-body { transform-box: fill-box; transform-origin: 50% 100%; animation: lotus-body 7s ease-in-out infinite; }
+        .aw-dawn-veil { animation: dawn-veil 7s cubic-bezier(0.3, 0, 0.2, 1) 0.2s both; }
+        .aw-dawn-glow { animation: dawn-glow 8s cubic-bezier(0.3, 0, 0.2, 1) 0.6s both; }
+        .life-card.visible { animation: life-glow 1.8s ease-out calc(var(--i) * 0.4s) both; }
+        .sweep-heading::after {
+          content: attr(data-sweep);
+          content: attr(data-sweep) / "";
+          position: absolute; inset: 0; pointer-events: none;
+          white-space: pre-line;
+          color: transparent; -webkit-text-fill-color: transparent;
+          background: linear-gradient(105deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0) 60%);
+          background-size: 250% 100%; background-repeat: no-repeat; background-position: 100% 0;
+          -webkit-background-clip: text; background-clip: text;
+          animation: heading-sweep 8s ease-in-out 0.7s infinite;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+      @keyframes lotus-breathe {
+        0%, 100% { opacity: 0.55; transform: scale(0.92); }
+        50%      { opacity: 1;    transform: scale(1.1); }
+      }
+      @keyframes lotus-body { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.008, 1.016); } }
+      @keyframes dawn-veil { from { opacity: 0.7; } to { opacity: 0; } }
+      @keyframes dawn-glow { from { opacity: 0; } to { opacity: 0.55; } }
+      @keyframes life-glow {
+        0%   { opacity: 0.25; box-shadow: 0 0 0 color-mix(in srgb, var(--c) 0%, transparent); border-color: rgba(167,139,250,0.1); }
+        55%  { opacity: 1;    box-shadow: 0 0 34px color-mix(in srgb, var(--c) 45%, transparent); border-color: color-mix(in srgb, var(--c) 60%, transparent); }
+        100% { opacity: 1;    box-shadow: 0 0 22px color-mix(in srgb, var(--c) 18%, transparent); border-color: rgba(167,139,250,0.18); }
+      }
+      @keyframes heading-sweep {
+        0%        { background-position: 100% 0; }
+        28%, 100% { background-position: 0% 0; }
+      }
     </style>
   </head>
   <body>
