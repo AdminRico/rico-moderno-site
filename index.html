@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/jpeg" href="/images/logo.jpg" />
-    <script type="module" crossorigin src="/assets/index-Final10.js"></script>
+    <script type="module" crossorigin src="/assets/index-Final11.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-cKmI2ls6.css">
     <style>
       /* Slow, calm drift of the starry hero backgrounds */
@@ -262,17 +262,48 @@
       /* One continuous night sky: the top banners fade softly into the page background */
       .hero-bg {
         position: absolute; inset: 0;
-        -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 180px), rgba(0,0,0,0.35) calc(100% - 70px), transparent 100%);
-        mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 180px), rgba(0,0,0,0.35) calc(100% - 70px), transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 300px), rgba(0,0,0,0.55) calc(100% - 190px), rgba(0,0,0,0.22) calc(100% - 100px), rgba(0,0,0,0.06) calc(100% - 40px), transparent calc(100% - 10px));
+        mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 300px), rgba(0,0,0,0.55) calc(100% - 190px), rgba(0,0,0,0.22) calc(100% - 100px), rgba(0,0,0,0.06) calc(100% - 40px), transparent calc(100% - 10px));
       }
       @media (max-width: 768px) {
         .hero-bg {
-          -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 120px), rgba(0,0,0,0.35) calc(100% - 45px), transparent 100%);
-          mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 120px), rgba(0,0,0,0.35) calc(100% - 45px), transparent 100%);
+          -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 200px), rgba(0,0,0,0.55) calc(100% - 130px), rgba(0,0,0,0.22) calc(100% - 70px), rgba(0,0,0,0.06) calc(100% - 28px), transparent calc(100% - 8px));
+          mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 200px), rgba(0,0,0,0.55) calc(100% - 130px), rgba(0,0,0,0.22) calc(100% - 70px), rgba(0,0,0,0.06) calc(100% - 28px), transparent calc(100% - 8px));
         }
       }
       /* Soft teal icons with a gentle glow (Inner Work topics, After Work practices) */
       .glow-icons svg { filter: drop-shadow(0 0 6px rgba(34,211,238,0.55)); }
+      /* Home: three path cards with equal size, links lined up at the bottom */
+      .path-cards { grid-template-columns: 1fr !important; grid-auto-rows: 1fr; align-items: stretch; }
+      @media (min-width: 900px) { .path-cards { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; } }
+      .path-cards > a { display: block; height: 100%; }
+      .path-cards .cosmic-card { height: 100%; display: flex; flex-direction: column; }
+      .path-cards .cosmic-card > div:last-child { flex: 1; display: flex; flex-direction: column; }
+      .path-cards .cosmic-card > div:last-child > span:last-child { margin-top: auto; }
+      /* Inner Work: intro centred on top, six topic cards in an even grid below */
+      .iw-intro { max-width: 720px; margin: 0 auto 3.5rem; text-align: center; }
+      .iw-intro .cosmic-quote { border-left: none; padding-left: 0; margin-top: 1.75rem; }
+      .iw-topics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 1.25rem; }
+      .iw-topic { text-align: left; height: 100%; }
+      .iw-topic-icon { height: 22px; display: flex; align-items: center; }
+      .iw-topic-icon svg { display: block; }
+      @media (max-width: 768px) { .iw-topics { grid-template-columns: 1fr; } }
+      /* Coaching FAQ: accordion, one answer open at a time */
+      .rm-faq { display: flex; flex-direction: column; gap: 0.85rem; }
+      .rm-faq-item { background: rgba(10,10,30,0.6); border: 1px solid rgba(34,211,238,0.12); border-radius: 4px; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+      .rm-faq-item.open { border-color: rgba(34,211,238,0.32); box-shadow: 0 0 22px rgba(34,211,238,0.08); }
+      .rm-faq-h { margin: 0; font: inherit; }
+      .rm-faq-q { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.15rem 1.4rem; background: none; border: 0; cursor: pointer; text-align: left; font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 600; color: #22d3ee; }
+      .rm-faq-q:focus-visible { outline: 2px solid rgba(34,211,238,0.6); outline-offset: 2px; border-radius: 4px; }
+      .rm-faq-icon { position: relative; flex: 0 0 14px; width: 14px; height: 14px; }
+      .rm-faq-icon::before, .rm-faq-icon::after { content: ""; position: absolute; left: 0; top: 6px; width: 14px; height: 2px; border-radius: 1px; background: #22d3ee; transition: transform 0.35s ease; }
+      .rm-faq-icon::after { transform: rotate(90deg); }
+      .rm-faq-item.open .rm-faq-icon::after { transform: rotate(0deg); }
+      .rm-faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s ease; }
+      .rm-faq-item.open .rm-faq-a { grid-template-rows: 1fr; }
+      .rm-faq-inner { overflow: hidden; }
+      .rm-faq-inner p { margin: 0; padding: 0 1.4rem 1.25rem; font-family: 'Raleway', sans-serif; font-size: 0.9rem; color: rgba(148,163,184,0.85); line-height: 1.7; }
+      @media (prefers-reduced-motion: reduce) { .rm-faq-a, .rm-faq-icon::before, .rm-faq-icon::after, .rm-faq-item { transition: none !important; } }
       /* Coaching: metallic antique gold for the Mastery title */
       .gold-metal {
         background: linear-gradient(90deg, #A67C3D 0%, #E6C98A 50%, #A67C3D 100%);
