@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/jpeg" href="/images/logo.jpg" />
-    <script type="module" crossorigin src="/assets/index-Fx3calm.js"></script>
+    <script type="module" crossorigin src="/assets/index-Fx4glow.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-cKmI2ls6.css">
     <style>
       /* Slow, calm drift of the starry hero backgrounds */
@@ -169,9 +169,9 @@
       }
       /* After Work: dawn layers */
       .aw-dawn-glow {
-        position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; opacity: 0.55;
-        background: radial-gradient(ellipse 45% 55% at 70% 52%, rgba(249,115,22,0.38) 0%, rgba(249,115,22,0) 70%),
-                    radial-gradient(ellipse 45% 55% at 38% 38%, rgba(167,139,250,0.32) 0%, rgba(167,139,250,0) 70%);
+        position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; opacity: 1;
+        background: radial-gradient(ellipse 50% 60% at 70% 55%, rgba(251,146,60,0.62) 0%, rgba(249,115,22,0.25) 38%, rgba(249,115,22,0) 72%),
+                    radial-gradient(ellipse 48% 58% at 36% 38%, rgba(167,139,250,0.55) 0%, rgba(139,92,246,0.2) 40%, rgba(167,139,250,0) 72%);
       }
       .aw-dawn-veil { position: absolute; inset: 0; pointer-events: none; background: #05050f; opacity: 0; }
       /* After Work: four life-area cards */
@@ -209,8 +209,8 @@
       @media (prefers-reduced-motion: no-preference) {
         .lotus-figure .lotus-glow { transform-box: fill-box; transform-origin: 50% 50%; animation: lotus-breathe 7s ease-in-out infinite; }
         .lotus-figure .lotus-body { transform-box: fill-box; transform-origin: 50% 100%; animation: lotus-body 7s ease-in-out infinite; }
-        .aw-dawn-veil { animation: dawn-veil 7s cubic-bezier(0.3, 0, 0.2, 1) 0.2s both; }
-        .aw-dawn-glow { animation: dawn-glow 8s cubic-bezier(0.3, 0, 0.2, 1) 0.6s both; }
+        .aw-dawn-veil { animation: dawn-veil 8s cubic-bezier(0.3, 0, 0.2, 1) 0.2s both; }
+        .aw-dawn-glow { animation: dawn-glow 9s cubic-bezier(0.3, 0, 0.2, 1) 0.6s both; }
         .life-card.visible { animation: life-glow 1.8s ease-out calc(var(--i) * 0.4s) both; }
         .sweep-heading::after {
           content: attr(data-sweep);
@@ -218,11 +218,47 @@
           position: absolute; inset: 0; pointer-events: none;
           white-space: pre-line;
           color: transparent; -webkit-text-fill-color: transparent;
-          background: linear-gradient(105deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0) 60%);
+          background: linear-gradient(105deg, rgba(255,255,255,0) 38%, rgba(165,243,252,0.95) 46.5%, #ffffff 50%, rgba(196,181,253,0.95) 53.5%, rgba(255,255,255,0) 62%);
+          filter: drop-shadow(0 0 5px rgba(165,243,252,0.95)) drop-shadow(0 0 14px rgba(167,139,250,0.7));
           background-size: 250% 100%; background-repeat: no-repeat; background-position: 100% 0;
           -webkit-background-clip: text; background-clip: text;
-          animation: heading-sweep 8s ease-in-out 0.7s infinite;
+          animation: heading-sweep 8s cubic-bezier(0.45, 0.05, 0.55, 0.95) 0.7s infinite;
         }
+      }
+      /* Coaching: champagne-gold Mastery card */
+      .pkg-gold {
+        border-color: rgba(214,189,140,0.55) !important;
+        box-shadow: 0 0 26px rgba(214,189,140,0.09) !important;
+      }
+      /* Shooting stars in the page heroes (placed by the small script below, never over text) */
+      .shooting-stars { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+      .shooting-stars-home { z-index: 2; }
+      .shooting-star {
+        position: absolute; left: 0; top: 0; height: 1.5px; border-radius: 2px; opacity: 0;
+        transform-origin: 0 50%;
+        background: linear-gradient(90deg, rgba(255,255,255,0), rgba(186,230,253,0.5) 70%, rgba(255,255,255,0.95));
+        box-shadow: 0 0 6px rgba(186,230,253,0.6);
+      }
+      /* Buttons: hover shine */
+      .btn-cosmic, .btn-cosmic-outline { position: relative; overflow: hidden; isolation: isolate; }
+      .btn-cosmic::before, .btn-cosmic-outline::before {
+        content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 45%; pointer-events: none;
+        background: linear-gradient(105deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0) 100%);
+        transform: translateX(0) skewX(-12deg); opacity: 0;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .btn-cosmic { animation: btn-pulse 4.5s ease-in-out infinite; }
+        .btn-cosmic.floating-btn { animation: float 3s ease-in-out infinite, btn-pulse 4.5s ease-in-out infinite; }
+        .btn-cosmic.floating-btn:hover { animation: float 3s ease-in-out infinite; }
+        .btn-cosmic:hover { animation: none; }
+        @media (hover: hover) {
+          .btn-cosmic::before, .btn-cosmic-outline::before { transition: transform 0.9s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s ease; }
+          .btn-cosmic:hover::before, .btn-cosmic-outline:hover::before { transform: translateX(380%) skewX(-12deg); opacity: 1; }
+        }
+      }
+      @keyframes btn-pulse {
+        0%, 100% { box-shadow: 0 0 18px rgba(34,211,238,0.28); }
+        50%      { box-shadow: 0 0 32px rgba(34,211,238,0.5), 0 0 60px rgba(139,92,246,0.22); }
       }
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after {
@@ -237,8 +273,8 @@
         50%      { opacity: 1;    transform: scale(1.1); }
       }
       @keyframes lotus-body { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.008, 1.016); } }
-      @keyframes dawn-veil { from { opacity: 0.7; } to { opacity: 0; } }
-      @keyframes dawn-glow { from { opacity: 0; } to { opacity: 0.55; } }
+      @keyframes dawn-veil { from { opacity: 0.85; } to { opacity: 0; } }
+      @keyframes dawn-glow { 0% { opacity: 0; } 100% { opacity: 1; } }
       @keyframes life-glow {
         0%   { opacity: 0.25; box-shadow: 0 0 0 color-mix(in srgb, var(--c) 0%, transparent); border-color: rgba(167,139,250,0.1); }
         55%  { opacity: 1;    box-shadow: 0 0 34px color-mix(in srgb, var(--c) 45%, transparent); border-color: color-mix(in srgb, var(--c) 60%, transparent); }
@@ -246,11 +282,72 @@
       }
       @keyframes heading-sweep {
         0%        { background-position: 100% 0; }
-        28%, 100% { background-position: 0% 0; }
+        32%, 100% { background-position: 0% 0; }
       }
     </style>
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      /* Shooting stars: one soft streak every 10-20 s in a free part of the hero sky. Off with "reduce motion". */
+      (function () {
+        var rm = window.matchMedia('(prefers-reduced-motion: reduce)');
+        function rand(a, b) { return a + Math.random() * (b - a); }
+        function textRects(sec) {
+          var out = [];
+          sec.querySelectorAll('h1,h2,p,span,a,button,svg').forEach(function (e) {
+            if (e.closest('.shooting-stars')) return;
+            var r = e.getBoundingClientRect();
+            if (r.width > 0 && r.height > 0 && (e.tagName === 'svg' || e.textContent.trim())) out.push(r);
+          });
+          return out;
+        }
+        function shoot() {
+          if (rm.matches || document.hidden) return;
+          var navB = 0;
+          document.elementsFromPoint(window.innerWidth / 2, 4).forEach(function (e) {
+            for (var n = e; n && n !== document.body; n = n.parentElement) {
+              if (getComputedStyle(n).position === 'fixed') { navB = Math.max(navB, n.getBoundingClientRect().bottom); break; }
+            }
+          });
+          var box = null, sec = null;
+          document.querySelectorAll('.shooting-stars').forEach(function (c) {
+            var r = c.getBoundingClientRect();
+            if (!box && r.bottom > navB + 80 && r.top < window.innerHeight - 80) { box = c; sec = c.parentElement; }
+          });
+          if (!box) return;
+          var R = box.getBoundingClientRect(), T = textRects(sec), phone = window.innerWidth < 769;
+          var L = phone ? 80 : 120, D = phone ? 150 : 230, pad = 36;
+          for (var tries = 0; tries < 40; tries++) {
+            var ang = (Math.random() < 0.5 ? rand(14, 30) : rand(150, 166)) * Math.PI / 180;
+            var x0 = rand(R.left, R.right), y0 = rand(Math.max(R.top, navB + 16), R.bottom - 30);
+            var ok = true;
+            for (var s = -L; s <= D + 4 && ok; s += 12) {
+              var x = x0 + Math.cos(ang) * s, y = y0 + Math.sin(ang) * s;
+              if (x < R.left + 4 || x > R.right - 4 || y < Math.max(R.top, navB + 10) || y > R.bottom - 10) ok = false;
+              for (var k = 0; k < T.length && ok; k++) {
+                var t = T[k];
+                if (x > t.left - pad && x < t.right + pad && y > t.top - pad && y < t.bottom + pad) ok = false;
+              }
+            }
+            if (!ok) continue;
+            var el = document.createElement('i');
+            el.className = 'shooting-star';
+            el.style.width = L + 'px';
+            box.appendChild(el);
+            var base = 'translate(' + (x0 - R.left - Math.cos(ang) * L) + 'px,' + (y0 - R.top - Math.sin(ang) * L) + 'px) rotate(' + ang + 'rad)';
+            var anim = el.animate([
+              { opacity: 0, transform: base + ' translateX(0px)' },
+              { opacity: 0.85, offset: 0.18 },
+              { opacity: 0, transform: base + ' translateX(' + D + 'px)' }
+            ], { duration: 1400, easing: 'cubic-bezier(0.2, 0.6, 0.4, 1)' });
+            anim.onfinish = function () { el.remove(); };
+            return;
+          }
+        }
+        function loop() { setTimeout(function () { shoot(); loop(); }, rand(10000, 20000)); }
+        setTimeout(function () { shoot(); loop(); }, rand(3500, 7000));
+      })();
+    </script>
   </body>
 </html>
