@@ -9,8 +9,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/jpeg" href="/images/logo.jpg" />
-    <script type="module" crossorigin src="/assets/index-Ab0utPh.js"></script>
+    <script type="module" crossorigin src="/assets/index-StarDrft.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-cKmI2ls6.css">
+    <style>
+      /* Slow, calm drift of the starry hero backgrounds */
+      @media (prefers-reduced-motion: no-preference) {
+        .cosmic-drift {
+          animation: cosmic-drift 80s ease-in-out infinite alternate;
+          will-change: transform;
+          backface-visibility: hidden;
+        }
+        .cosmic-drift-fixed {
+          background-attachment: scroll !important;
+        }
+      }
+      @keyframes cosmic-drift {
+        from { transform: scale(1.08) translate3d(-1.5%, -1%, 0); }
+        to   { transform: scale(1.08) translate3d(1.5%, 1%, 0); }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
