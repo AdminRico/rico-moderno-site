@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/jpeg" href="/images/logo.jpg" />
-    <script type="module" crossorigin src="/assets/index-Fx4glow.js"></script>
+    <script type="module" crossorigin src="/assets/index-Fx5gold.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-cKmI2ls6.css">
     <style>
       /* Slow, calm drift of the starry hero backgrounds */
@@ -227,12 +227,11 @@
       }
       /* Coaching: champagne-gold Mastery card */
       .pkg-gold {
-        border-color: rgba(214,189,140,0.55) !important;
-        box-shadow: 0 0 26px rgba(214,189,140,0.09) !important;
+        border-color: rgba(217,168,78,0.6) !important;
+        box-shadow: 0 0 26px rgba(217,168,78,0.12) !important;
       }
       /* Shooting stars in the page heroes (placed by the small script below, never over text) */
-      .shooting-stars { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
-      .shooting-stars-home { z-index: 2; }
+      .sky-stars { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 40; }
       .shooting-star {
         position: absolute; left: 0; top: 0; height: 1.5px; border-radius: 2px; opacity: 0;
         transform-origin: 0 50%;
@@ -289,44 +288,56 @@
   <body>
     <div id="root"></div>
     <script>
-      /* Shooting stars: one soft streak every 10-20 s in a free part of the hero sky. Off with "reduce motion". */
+      /* Shooting stars: one soft streak every 10-20 s, on any page, in a free part of the starry background
+         (never over text, images, cards, buttons or the menu bar). Off with "reduce motion". */
       (function () {
         var rm = window.matchMedia('(prefers-reduced-motion: reduce)');
+        var sky = null;
         function rand(a, b) { return a + Math.random() * (b - a); }
-        function textRects(sec) {
+        function ensureSky() {
+          if (sky && sky.isConnected) return sky;
+          sky = document.createElement('div');
+          sky.className = 'sky-stars';
+          sky.setAttribute('aria-hidden', 'true');
+          document.body.appendChild(sky);
+          return sky;
+        }
+        function topBar() {
+          var b = 0;
+          document.elementsFromPoint(window.innerWidth / 2, 4).forEach(function (e) {
+            for (var n = e; n && n !== document.body; n = n.parentElement) {
+              if (getComputedStyle(n).position === 'fixed') { b = Math.max(b, n.getBoundingClientRect().bottom); break; }
+            }
+          });
+          return b;
+        }
+        function obstacles(vh) {
           var out = [];
-          sec.querySelectorAll('h1,h2,p,span,a,button,svg').forEach(function (e) {
-            if (e.closest('.shooting-stars')) return;
+          var sel = 'h1,h2,h3,h4,h5,h6,p,li,label,a,button,input,textarea,select,img,svg,video,iframe,form,' +
+                    '[class*="card"],[class*="btn"],.journey-box,.life-cards,blockquote,span';
+          document.querySelectorAll(sel).forEach(function (e) {
+            if (e.closest('.sky-stars')) return;
             var r = e.getBoundingClientRect();
-            if (r.width > 0 && r.height > 0 && (e.tagName === 'svg' || e.textContent.trim())) out.push(r);
+            if (r.width === 0 || r.height === 0 || r.bottom < 0 || r.top > vh) return;
+            if (e.tagName === 'SPAN' && !e.textContent.trim()) return;
+            out.push(r);
           });
           return out;
         }
         function shoot() {
           if (rm.matches || document.hidden) return;
-          var navB = 0;
-          document.elementsFromPoint(window.innerWidth / 2, 4).forEach(function (e) {
-            for (var n = e; n && n !== document.body; n = n.parentElement) {
-              if (getComputedStyle(n).position === 'fixed') { navB = Math.max(navB, n.getBoundingClientRect().bottom); break; }
-            }
-          });
-          var box = null, sec = null;
-          document.querySelectorAll('.shooting-stars').forEach(function (c) {
-            var r = c.getBoundingClientRect();
-            if (!box && r.bottom > navB + 80 && r.top < window.innerHeight - 80) { box = c; sec = c.parentElement; }
-          });
-          if (!box) return;
-          var R = box.getBoundingClientRect(), T = textRects(sec), phone = window.innerWidth < 769;
+          var vw = window.innerWidth, vh = window.innerHeight, top = topBar() + 14;
+          var O = obstacles(vh), phone = vw < 769;
           var L = phone ? 80 : 120, D = phone ? 150 : 230, pad = 36;
-          for (var tries = 0; tries < 40; tries++) {
+          for (var tries = 0; tries < 80; tries++) {
             var ang = (Math.random() < 0.5 ? rand(14, 30) : rand(150, 166)) * Math.PI / 180;
-            var x0 = rand(R.left, R.right), y0 = rand(Math.max(R.top, navB + 16), R.bottom - 30);
+            var x0 = rand(0, vw), y0 = rand(top, vh - 20);
             var ok = true;
-            for (var s = -L; s <= D + 4 && ok; s += 12) {
+            for (var s = -L; s <= D + 4 && ok; s += 10) {
               var x = x0 + Math.cos(ang) * s, y = y0 + Math.sin(ang) * s;
-              if (x < R.left + 4 || x > R.right - 4 || y < Math.max(R.top, navB + 10) || y > R.bottom - 10) ok = false;
-              for (var k = 0; k < T.length && ok; k++) {
-                var t = T[k];
+              if (x < 6 || x > vw - 6 || y < top || y > vh - 8) ok = false;
+              for (var k = 0; k < O.length && ok; k++) {
+                var t = O[k];
                 if (x > t.left - pad && x < t.right + pad && y > t.top - pad && y < t.bottom + pad) ok = false;
               }
             }
@@ -334,18 +345,25 @@
             var el = document.createElement('i');
             el.className = 'shooting-star';
             el.style.width = L + 'px';
-            box.appendChild(el);
-            var base = 'translate(' + (x0 - R.left - Math.cos(ang) * L) + 'px,' + (y0 - R.top - Math.sin(ang) * L) + 'px) rotate(' + ang + 'rad)';
+            ensureSky().appendChild(el);
+            var base = 'translate(' + (x0 - Math.cos(ang) * L) + 'px,' + (y0 - Math.sin(ang) * L) + 'px) rotate(' + ang + 'rad)';
             var anim = el.animate([
               { opacity: 0, transform: base + ' translateX(0px)' },
               { opacity: 0.85, offset: 0.18 },
               { opacity: 0, transform: base + ' translateX(' + D + 'px)' }
             ], { duration: 1400, easing: 'cubic-bezier(0.2, 0.6, 0.4, 1)' });
             anim.onfinish = function () { el.remove(); };
-            return;
+            return true;
           }
+          return false;
         }
-        function loop() { setTimeout(function () { shoot(); loop(); }, rand(10000, 20000)); }
+        function loop() {
+          setTimeout(function () {
+            /* if there is no free sky right now, try again a few seconds later */
+            if (shoot() === false) { setTimeout(function () { shoot(); }, 3000); }
+            loop();
+          }, rand(10000, 20000));
+        }
         setTimeout(function () { shoot(); loop(); }, rand(3500, 7000));
       })();
     </script>
