@@ -39,7 +39,7 @@
           animation-name: cosmic-drift-phone;
         }
       }
-      /* Homepage hero: twinkling glints on the RM letters + shimmering headline */
+      /* Homepage hero: twinkling glints on the RM letters (headline gradient is static) */
       .rm-glints { display: none; }
       @media (prefers-reduced-motion: no-preference) {
         .rm-glints {
@@ -83,17 +83,12 @@
           background-image: linear-gradient(90deg, #22d3ee 0%, #a78bfa 30%, #e2e8f0 50%, #a78bfa 70%, #22d3ee 100%) !important;
           background-size: 200% 100% !important;
           background-repeat: repeat-x !important;
-          animation: hero-shimmer 14s linear infinite;
         }
       }
       @keyframes rm-twinkle {
         0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.4) rotate(0deg); }
         45%      { opacity: 0.9; transform: translate(-50%, -50%) scale(1) rotate(15deg); }
         60%      { opacity: 0.6; transform: translate(-50%, -50%) scale(0.85) rotate(20deg); }
-      }
-      @keyframes hero-shimmer {
-        from { background-position: 0% 50%; }
-        to   { background-position: -200% 50%; }
       }
       /* Inner Work: breathing glow behind the heading */
       .breath-heading { position: relative; isolation: isolate; }
@@ -185,7 +180,7 @@
       }
       .life-icon svg { width: 30px; height: 30px; fill: none; stroke: var(--c); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; display: block; filter: drop-shadow(0 0 6px var(--c)); }
       .life-label { font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.08em; color: #e2e8f0; }
-      /* All pages: soft light sweep across the main heading */
+      /* All pages: main heading (light sweep removed; headings stay static) */
       .sweep-heading { position: relative; }
       /* Homepage hero: fill the screen without distortion */
       .hero-logo { background-size: cover !important; }
@@ -212,18 +207,6 @@
         .aw-dawn-veil { animation: dawn-veil 8s cubic-bezier(0.3, 0, 0.2, 1) 0.2s both; }
         .aw-dawn-glow { animation: dawn-glow 9s cubic-bezier(0.3, 0, 0.2, 1) 0.6s both; }
         .life-card.visible { animation: life-glow 1.8s ease-out calc(var(--i) * 0.4s) both; }
-        .sweep-heading::after {
-          content: attr(data-sweep);
-          content: attr(data-sweep) / "";
-          position: absolute; inset: 0; pointer-events: none;
-          white-space: pre-line;
-          color: transparent; -webkit-text-fill-color: transparent;
-          background: linear-gradient(105deg, rgba(255,255,255,0) 38%, rgba(165,243,252,0.95) 46.5%, #ffffff 50%, rgba(196,181,253,0.95) 53.5%, rgba(255,255,255,0) 62%);
-          filter: drop-shadow(0 0 5px rgba(165,243,252,0.95)) drop-shadow(0 0 14px rgba(167,139,250,0.7));
-          background-size: 250% 100%; background-repeat: no-repeat; background-position: 100% 0;
-          -webkit-background-clip: text; background-clip: text;
-          animation: heading-sweep 8s cubic-bezier(0.45, 0.05, 0.55, 0.95) 0.7s infinite;
-        }
       }
       /* Coaching: champagne-gold Mastery card */
       .pkg-gold {
@@ -406,10 +389,6 @@
         0%   { opacity: 0.25; box-shadow: 0 0 0 color-mix(in srgb, var(--c) 0%, transparent); border-color: rgba(167,139,250,0.1); }
         55%  { opacity: 1;    box-shadow: 0 0 34px color-mix(in srgb, var(--c) 45%, transparent); border-color: color-mix(in srgb, var(--c) 60%, transparent); }
         100% { opacity: 1;    box-shadow: 0 0 22px color-mix(in srgb, var(--c) 18%, transparent); border-color: rgba(167,139,250,0.18); }
-      }
-      @keyframes heading-sweep {
-        0%        { background-position: 100% 0; }
-        32%, 100% { background-position: 0% 0; }
       }
     </style>
   </head>
